@@ -422,12 +422,12 @@ if (!params.merged_gtf) {
             fastq_tag = samplename
             if (params.singleEnd) {
                 '''
-            fastp -i !{fastq_file[0]} -o !{samplename}.qc.gz -h !{samplename}_fastp.html
+            fastp -i !{fastq_file[0]} -o !{samplename}.qc.gz -h !{samplename}_fastp.html --disable_adapter_trimming
            
             '''
             } else {
                 '''
-            fastp -i !{fastq_file[0]}  -I !{fastq_file[1]} -o !{samplename}_1.qc.fq.gz  -O !{samplename}_2.qc.fq.gz -h !{samplename}_fastp.html
+            fastp -i !{fastq_file[0]}  -I !{fastq_file[1]} -o !{samplename}_1.qc.fq.gz  -O !{samplename}_2.qc.fq.gz -h !{samplename}_fastp.html --disable_adapter_trimming
             '''
             }
         }
