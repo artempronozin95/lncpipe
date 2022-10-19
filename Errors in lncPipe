@@ -35,3 +35,30 @@ error in index build. Error: repeated name in FASTA file
 
 Solution - awk '/^>/{f=!d[$1];d[$1]=1}f' in.fa > out.fa before kallisto index build
 
+In Rerun_CPAT_to_evaluate_lncRNA
+error IndexError: list index out of range. Caused by empty row in 
+
+Solution - in cpat.py change and add next lines:
+try:
+		for l in open((options.out_file + '.ORF_prob.tsv'), 'r'):
+			l = l.strip()
+			print(l)
+			if l.startswith('ID'):
+				print ("seq_ID\t" + l, file=BEST)
+				continue
+			f = l.split('\t')
+			seq_id = f[0].split('_ORF_')[0]
+			prob = float(f[col_index])
+			if seq_id not in best_candidates:
+				best_candidates[seq_id] = f
+			else:
+				if prob > float(best_candidates[seq_id][col_index]):
+					best_candidates[seq_id] = f
+	except IndexError:
+		pass
+  
+ In Secondary_basic_statistic 
+ error in open file. Want "lncRNA.final.CPAT.out" but need "lncRNA.final.CPAT.out.ORF_prob.tsv"
+ 
+ 
+
