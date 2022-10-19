@@ -67,6 +67,7 @@ Solution - in cpat.py change and add next lines:
 **In process Secondary_basic_statistic**
 
 error in open file. Want "lncRNA.final.CPAT.out" but need "lncRNA.final.CPAT.out.ORF_prob.tsv"
+As well as with "protein_coding.final.CPAT.out" need "protein_coding.final.CPAT.out.ORF_prob.tsv"
  
  
 
