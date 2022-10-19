@@ -1,0 +1,26 @@
+In process > Summary_renaming_and_classi
+problem with gtf format.  lines with transcript_id=="", they don't contain a valid ID, and so StringTie is complaining. 
+Its always a bit of the worry to work out what to do with a the transcript_id field on gene lines in a GTF file. 
+The orignal GTF format didn't contain gene lines, but they appear to have crept in at some point. 
+The ENSEMBL files just don't have a transcript_id field on their gene lines, but i bet that trips StringTie up as well.
+Solution - `awk '$3 != "gene" ' my_annotation.gtf > my_annotation_no_genes.gtf`
+
+
+skipped  ] process > combine_public_annotation (1)  [100%] 1 of 1, stored: 1 ✔
+[34/066420] process > Run_FastP (SRR957442)          [100%] 1 of 1, cached: 1 ✔
+[6c/608191] process > fastq_hisat2_alignment_For_... [100%] 1 of 1, cached: 1 ✔
+[3d/4d7471] process > StringTie_assembly (SRR957442) [100%] 1 of 1, cached: 1 ✔
+[db/c056b7] process > StringTie_merge_assembled_g... [100%] 1 of 1, cached: 1 ✔
+[b0/a76b61] process > Merge_assembled_gtf_with_GE... [100%] 1 of 1, cached: 1 ✔
+[fb/7203cb] process > Identify_novel_lncRNA_with_... [100%] 1 of 1, cached: 1 ✔
+[df/34990a] process > Predict_coding_abilities_by... [100%] 1 of 1, cached: 1 ✔
+[aa/4db86b] process > Predict_coding_abilities_by... [100%] 1 of 1, cached: 1 ✔
+[c2/eefc41] process > Filter_lncRNA_by_coding_pot... [100%] 1 of 1 ✔
+[4b/142c02] process > Summary_renaming_and_classi... [100%] 1 of 1, failed: 1 ✘
+[-        ] process > Rerun_CPAT_to_evaluate_lncRNA  -
+[-        ] process > Rerun_CPAT_to_evaluate_coding  -
+[-        ] process > Secondary_basic_statistic      -
+[-        ] process > Build_kallisto_index_of_GTF... -
+[-        ] process > Run_kallisto_for_quantifica... -
+[-        ] process > Get_kallisto_matrix            -
+[-        ] process > Run_LncPipeReporter            -
