@@ -30,3 +30,8 @@ The ENSEMBL files just don't have a transcript_id field on their gene lines, but
 
 Solution - "awk '$3 != "gene" ' my_annotation.gtf > my_annotation_no_genes.gtf"
 
+process Build_kallisto_index_of_GTF_for_quantification
+error in index build. Error: repeated name in FASTA file
+
+Solution - awk '/^>/{f=!d[$1];d[$1]=1}f' in.fa > out.fa before kallisto index build
+
